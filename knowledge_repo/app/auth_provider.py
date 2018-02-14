@@ -10,6 +10,7 @@ from .utils.auth import prepare_user
 from ..utils.registry import SubclassRegisteringABCMeta
 
 
+
 class KnowledgeAuthProvider(with_metaclass(SubclassRegisteringABCMeta, object)):
     _registry_keys = None
 

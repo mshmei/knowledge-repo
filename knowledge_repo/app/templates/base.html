@@ -93,12 +93,12 @@
                 <li><a href="/feed?authors={{ current_user.identifier }}">My Posts</a></li>
                 <li><a href="/favorites">My Favorites</a></li>
                 {% if current_user.can_logout %}
-                <li><a href="{{ url_for('auth.logout') }}">Sign out</a></li>
+                <li><a href="{{ url_for('saml_auth.saml_auth_logout') }}">Sign out</a></li>
                 {% endif %}
                 <li role="separator" class="divider"></li>
                 <li class="dropdown-header">Site Features</li>
                 {% else %}
-                <li><a href="{{ url_for('auth.login') }}">Sign in</a></li>
+                <li><a href="{{ url_for('saml_auth.saml_auth_page') }}">Sign in</a></li>
                 {% endif %}
                 <li><a href="/stats">Stats</a></li>
                 <li><a href="/about">About</a></li>
@@ -156,7 +156,7 @@
     </div>
 
     <div class="footer">
-      Served with <span class="glyphicon glyphicon-heart"></span> by <a href="https://github.com/airbnb/knowledge-repo">Knowledge Repo</a> <a {% if version_revision %}title='{{version_revision}}' {% endif %} href="https://github.com/airbnb/knowledge-repo/releases/tag/v{{ version }}">{{ version }}</a>
+      Served with <span class="glyphicon glyphicon-heart"></span> by Periscope Data Team Knowledge Repo {{ version }}</a>
       <br />
       <i title="Last checked for updates: {{last_index_check}}">Last indexed: {{last_index}}</i>
     </div>

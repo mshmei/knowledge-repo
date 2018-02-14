@@ -11,8 +11,8 @@ import math
 import multiprocessing
 import uuid
 
-from flask import Flask, current_app, render_template, g, request, flash, redirect, url_for
-from flask_login import LoginManager, user_loaded_from_request
+from flask import Flask, current_app, render_template, g, request, flash, redirect, url_for, session
+from flask_login import LoginManager, user_loaded_from_request, login_required
 from flask_mail import Mail
 from flask_migrate import Migrate
 from flask_principal import Principal, identity_loaded, identity_changed, Identity, RoleNeed, UserNeed, AnonymousIdentity, PermissionDenied
@@ -28,7 +28,6 @@ from .proxies import db_session, current_repo, current_user
 from .index import update_index, set_up_indexing_timers, time_since_index, time_since_index_check
 from .models import db as sqlalchemy_db, Post, User, Tag
 from .utils.auth import AnonymousKnowledgeUser, populate_identity_roles, prepare_user
-
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -94,7 +93,10 @@ class KnowledgeFlask(Flask):
 
         # Initialise login manager to keep track of user sessions
         LoginManager().init_app(self)
-        self.login_manager.login_view = 'auth.login'
+        if self.config.get('SAML_AUTH'):
+            self.login_manager.login_view = 'saml_auth.saml_auth_page'
+        else:
+            self.login_manager.login_view = 'auth.login'
         self.login_manager.anonymous_user = AnonymousKnowledgeUser
 
         @self.login_manager.user_loader
@@ -150,6 +152,7 @@ class KnowledgeFlask(Flask):
         self.register_blueprint(routes.editor.blueprint)
         self.register_blueprint(routes.groups.blueprint)
         self.register_blueprint(routes.auth.blueprint)
+        self.register_blueprint(routes.saml_auth.blueprint)
         KnowledgeAuthProvider.register_auth_provider_blueprints(self)
 
         if self.config['DEBUG']:

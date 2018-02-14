@@ -6,6 +6,15 @@ from ..auth_provider import KnowledgeAuthProvider
 
 
 PRESETS = {
+    'okta': {
+        'applications':{
+            'okta-example-com':'https://periscopedata.okta.com/app/exk5vj2xj6KdQ6LDZ1t7/sso/saml/metadata'
+        },
+        'user_info_mapping': {
+            'identifier': ['FirstName', 'Email', 'LastName'],
+            'name': 'Email'
+        }
+    },
     'bitbucket': {
         'base_url': 'https://api.bitbucket.org/2.0/',
         'authorization_url': 'https://bitbucket.org/site/oauth2/authorize',
@@ -62,6 +71,7 @@ def _resolve_oauth_config(name, local_namespace, config, *variables):
             value = presets.get(variable, None)
         output.append(value)
     return output
+
 
 
 class OAuth2Provider(KnowledgeAuthProvider):

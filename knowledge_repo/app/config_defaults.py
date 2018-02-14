@@ -54,6 +54,10 @@ DB_AUTO_UPGRADE = False
 # By default, the knowledge repo offers: ['debug', 'bitbucket', 'github', 'google']
 AUTH_PROVIDERS = []
 
+# Extending authentication using the routes provided by saml_auth
+SAML_AUTH = True
+SAML_AUTH_PROVIDER = ['okta']
+
 # If you are going to use a OAuth provider, you will need to specify client ids
 # and private tokens. This can be done by instantiating instances of
 # `OAuth2Provider` and adding them to the above list, or by specifying OAuth
@@ -107,13 +111,13 @@ REMEMBER_COOKIE_DURATION = datetime.timedelta(days=365)
 # This section configures various policy related to access control.
 
 # Should anonymous users be able to view the post indices
-POLICY_ANONYMOUS_VIEW_INDEX = True
+POLICY_ANONYMOUS_VIEW_INDEX = False
 
 # Should anonymous users be able to view the content of posts
-POLICY_ANONYMOUS_VIEW_POST = True
+POLICY_ANONYMOUS_VIEW_POST = False
 
 # Should anonymous users be able to view overall statistics
-POLICY_ANONYMOUS_VIEW_STATS = True
+POLICY_ANONYMOUS_VIEW_STATS = False
 
 
 # ---------------------------------------------------
