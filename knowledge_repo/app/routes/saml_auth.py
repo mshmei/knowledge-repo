@@ -36,7 +36,7 @@ metadata_url_for = {
     # EXAMPLE APPLICATION
     # 'test': 'http://idp.oktadev.com/metadata',
     # 'example-okta-com': 'https://periscopedata.okta.com/app/exk5vj2xj6KdQ6LDZ1t7/sso/saml/metadata',
-    'example-okta-com': 'https://periscopedata.okta.com/app/periscopedata_pdknowledgerepo_1/exk5z0615lJbBDd6K1t7/sso/saml/metadata'
+    'example-okta-com': 'https://periscopedata.okta.com/app/exk5z0615lJbBDd6K1t7/sso/saml/metadata'
     }
 
 # Create blueprint for routing saml auth
