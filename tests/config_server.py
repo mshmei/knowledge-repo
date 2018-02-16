@@ -86,3 +86,10 @@ WEB_EDITOR_PREFIXES = None
 # Posts with certain tags can be excluded from showing up
 # in the app. This can be useful for security purposes
 EXCLUDED_TAGS = ['private']
+
+IDP_METADATA_URLS = {
+    # EXAMPLE APPLICATION
+    # 'test': 'http://idp.oktadev.com/metadata',
+    # 'example-okta-com': 'https://periscopedata.okta.com/app/exk5vj2xj6KdQ6LDZ1t7/sso/saml/metadata',
+    'example-okta-com': 'https://periscopedata.okta.com/app/exk5z0615lJbBDd6K1t7/sso/saml/metadata'
+    }
