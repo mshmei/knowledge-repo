@@ -1,7 +1,7 @@
 import logging
 import os
 import uuid
-from ..proxies import db_session, current_repo, current_user, current_app
+from ..proxies import db_session, current_repo, current_user
 from ..models import User
 
 from flask import (
@@ -32,7 +32,12 @@ import requests
 
 
 
-metadata_url_for = current_app.config.get('IDP_METADATA_URLS')
+metadata_url_for = {
+    # EXAMPLE APPLICATION
+    # 'test': 'http://idp.oktadev.com/metadata',
+    # 'example-okta-com': 'https://periscopedata.okta.com/app/exk5vj2xj6KdQ6LDZ1t7/sso/saml/metadata',
+    'example-okta-com': 'https://periscopedata.okta.com/app/periscopedata_pdknowledgerepo_1/exk5z0615lJbBDd6K1t7/sso/saml/metadata'
+    }
 
 # Create blueprint for routing saml auth
 blueprint = Blueprint('saml_auth', __name__,
