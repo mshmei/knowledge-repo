@@ -141,6 +141,8 @@ class KnowledgeFlask(Flask):
         if self.config.get('MAIL_SERVER'):
             self.config['mail'] = Mail(self)
 
+        self.config['PREFERRED_URL_SCHEME'] = 'https'
+
         # Register routes to be served
         self.register_blueprint(routes.posts.blueprint)
         self.register_blueprint(routes.health.blueprint)

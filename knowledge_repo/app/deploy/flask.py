@@ -8,6 +8,7 @@ class FlaskDeployer(KnowledgeDeployer):
     def run(self, **kwargs):
         app = self.app
         return app.run(
+            ssl_context='adhoc',
             debug=app.config['DEBUG'],
             host=self.host,
             port=self.port,
